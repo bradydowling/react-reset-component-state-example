@@ -1,23 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import MyForm from './MyForm';
 import './App.css';
 
 function App() {
+  const [turtle, setTurtle] = useState(null);
+  const turtles = ['Michaelangelo', 'Raphael', 'Donatello', 'Leonardo'];
+  const showTurtle = () => {
+    const turtleIndex = Math.round(Math.random() * 3);
+    setTurtle(turtles[turtleIndex]);
+  }
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h2>Which Ninja Turtle Are You?</h2>
+        <MyForm />
+        <button onClick={showTurtle}>Find Out</button>
+        { turtle && 
+        <div>You are {turtle}!</div>
+        }
       </header>
     </div>
   );
